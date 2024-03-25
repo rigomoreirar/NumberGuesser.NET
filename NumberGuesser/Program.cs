@@ -14,7 +14,17 @@ namespace NumberGuesser
     internal class Program
     {
 
-        
+        private static void ConsoleWrite(string message, ConsoleColor consoleColor)
+        {
+            Console.ForegroundColor = consoleColor;
+
+            // Write the message with the specified color
+            Console.WriteLine(message);
+
+            // Reset the text color to the default
+            Console.ResetColor();
+        }
+
 
 
         // Entry Point Method
@@ -26,22 +36,17 @@ namespace NumberGuesser
             string appAuthor = "Rigoberto Moreira";
 
 
-            // Change text color
-            Console.ForegroundColor = ConsoleColor.Green;
 
             // Write out app info
-            Console.WriteLine("{0}: version {1} by {2}", appName, appVersion, appAuthor);
-
-            // Reset text color
-            Console.ResetColor();
+            ConsoleWrite(appName + ": version " + appVersion + " by " + appAuthor, ConsoleColor.Green);
 
             //Ask user name
-            Console.WriteLine("What is yout name");
-            
+            ConsoleWrite("What is yout name?", ConsoleColor.Yellow);
+
             //Get user input
             string userName = Console.ReadLine();
 
-            Console.WriteLine("Hello {0}, let's play a game...", userName);
+            ConsoleWrite("Hello " + userName + ", let's play a game...", ConsoleColor.Yellow);
 
             // Init correct number
 
@@ -50,10 +55,28 @@ namespace NumberGuesser
             // Init guess var
             int guess = 0;
 
+            // Ask user for number
+            ConsoleWrite("Guess a number between 1 and 10", ConsoleColor.Yellow);
 
-            // Exit game
-            Console.WriteLine("Press ENTER to exit");
+            while (guess != correctNumber) {
+                //Get user guess
+                string userInputGuess = Console.ReadLine();
+
+                //Cast to int and put in guess
+                guess = Int32.Parse(userInputGuess);
+
+                if (guess != correctNumber) { 
+                    // Tell user it is the wrong number
+                   
+                }
+            }
+
+            // Exit game and tell user it is the right number
+            ConsoleWrite("Your number is correct!", ConsoleColor.Blue);
+
+            ConsoleWrite("Press ENTER to exit", ConsoleColor.White);
             Console.ReadLine();
         }
+
     }
 }
